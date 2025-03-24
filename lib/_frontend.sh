@@ -16,7 +16,7 @@ frontend_node_dependencies() {
 
   sudo su - deploy <<EOF
   cd /home/deploy/${instancia_add}/frontend
-  npm i --legacy-peer-deps
+  npm i --f
 EOF
 
   sleep 2
@@ -59,7 +59,7 @@ frontend_update() {
   git fetch
   git pull
   cd /home/deploy/${empresa_atualizar}/frontend
-  npm i --legacy-peer-deps
+  npm i --f
   rm -rf build
   npm run build
 EOF
@@ -99,6 +99,16 @@ REACT_APP_TIMEZONE=America/Sao_Paulo
 REACT_APP_TRIALEXPIRATION=7
 REACT_APP_FACEBOOK_APP_ID=
 REACT_APP_NUMBER_SUPPORT=556196080740
+
+CERTIFICADOS=false
+HTTPS=false
+SSL_CRT_FILE=F:\\bkpidx\\workflow\\backend\\certs\\localhost.pem
+SSL_KEY_FILE=F:\\bkpidx\\workflow\\backend\\certs\\localhost-key.pem
+
+REACT_APP_FACEBOOK_APP_ID=2813216208828642
+FACEBOOK_APP_ID=2813216208828642
+FACEBOOK_APP_SECRET=8233912aeade366dd8e2ebef6be256b6
+
 EOF2
 EOF1
 
