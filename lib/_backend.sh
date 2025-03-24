@@ -68,6 +68,11 @@ DB_PASS=${mysql_root_password}
 DB_NAME=${instancia_add}
 DB_PORT=5432
 
+CERTIFICADOS=false
+HTTPS=false
+SSL_CRT_FILE=F:\\bkpidx\\workflow\\backend\\certs\\localhost.pem
+SSL_KEY_FILE=F:\\bkpidx\\workflow\\backend\\certs\\localhost-key.pem
+
 TIMEOUT_TO_IMPORT_MESSAGE=999
 FLUSH_REDIS_ON_START=true
 DEBUG_TRACE=false
@@ -87,20 +92,43 @@ REDIS_PASSWORD=${mysql_root_password}
 JWT_SECRET=Di0LisB99vHv/c6z+hRGd53MkxGYR/XhABe0SsrzJu0=
 JWT_REFRESH_SECRET=0DOH9hUi0SiKPD67l1WTfE0M4uRx3nkDmvyIHN1Sfhs=
 
-MP_ACCESS_TOKEN =
+COMPANY_TOKEN=whaticket
+PERFEX_URL=
+PERFEX_MODULE=
+
+VERIFY_TOKEN=whaticket
+
+#METODOS DE PAGAMENTO
+STRIPE_PRIVATE=
+STRIPE_OK_URL=BACKEND_URL/subscription/stripewebhook
+STRIPE_CANCEL_URL=FRONTEND_URL/financeiro
+
+MP_ACCESS_TOKEN=
+MP_NOTIFICATION_URL=BACKEND_URL/subscription/mercadopagowebhook
+
+ASAAS_TOKEN=
+
+GERENCIANET_SANDBOX=false
+GERENCIANET_CLIENT_ID=
+GERENCIANET_CLIENT_SECRET=
+GERENCIANET_PIX_CERT=
+GERENCIANET_PIX_KEY=
 
 USER_LIMIT=${max_user}
 CONNECTIONS_LIMIT=${max_whats}
 CLOSED_SEND_BY_ME=true
 
+MASTER_KEY=senha_master
+TIMEOUT_TO_IMPORT_MESSAGE=1000
+
 FACEBOOK_APP_ID=
 FACEBOOK_APP_SECRET=
 
-MAIL_HOST=
-MAIL_USER=
-MAIL_PASS=
-MAIL_FROM=
-MAIL_PORT=
+MAIL_HOST="smtp.gmail.com"
+MAIL_USER="seu@gmail.com"
+MAIL_PASS="SuaSenha"
+MAIL_FROM="seu@gmail.com"
+MAIL_PORT="465"
 
 [-]EOF
 EOF
@@ -165,7 +193,7 @@ backend_update() {
   pm2 stop ${empresa_atualizar}-backend
   git pull
   cd /home/deploy/${empresa_atualizar}/backend
-  npm install
+  npm install --f
   npm update
   rm -rf dist 
   npm run build
