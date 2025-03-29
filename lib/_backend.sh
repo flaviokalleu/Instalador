@@ -14,6 +14,7 @@ backend_redis_create() {
   sleep 2
 
   sudo su - root <<EOF
+  
   usermod -aG docker deploy
   docker run --name redis-${instancia_add} -p ${redis_port}:6379 --restart always --detach redis redis-server --requirepass ${mysql_root_password}
   
@@ -68,6 +69,8 @@ DB_PASS=${mysql_root_password}
 DB_NAME=${instancia_add}
 DB_PORT=5432
 
+GEMINI_API_KEY=AIzaSyBSfas1EubBL1MvtwIqmF6_gJko6s_BjyY
+
 CERTIFICADOS=false
 HTTPS=false
 SSL_CRT_FILE=F:\\bkpidx\\workflow\\backend\\certs\\localhost.pem
@@ -76,11 +79,10 @@ SSL_KEY_FILE=F:\\bkpidx\\workflow\\backend\\certs\\localhost-key.pem
 TIMEOUT_TO_IMPORT_MESSAGE=999
 FLUSH_REDIS_ON_START=true
 DEBUG_TRACE=false
-CHATBOT_RESTRICT_NUMBER=
+
 APP_TRIALEXPIRATION=7
-BROWSER_CLIENT=zazap  
-BROWSER_NAME=Chrome  
-BROWSER_VERSION=10.0
+
+
 
 REDIS_URI=redis://:${mysql_root_password}@127.0.0.1:${redis_port}
 REDIS_OPT_LIMITER_MAX=1
